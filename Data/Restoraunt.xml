@@ -1,0 +1,56 @@
+<restaurant name="Taste Delight" address="123 Gourmet Street">
+    <tables>
+        <table id="1" seats="4"/>
+        <table id="2" seats="2"/>
+        <table id="3" seats="6"/>
+    </tables>
+    <menu>
+        <dish id="101" type="main">
+            <name>Grilled Salmon</name>
+            <price>15.99</price>
+            <allergyTags>fish</allergyTags>
+        </dish>
+        <dish id="102" type="appetizer">
+            <name>Caesar Salad</name>
+            <price>7.50</price>
+            <allergyTags>nuts</allergyTags>
+        </dish>
+        <dish id="103" type="drink">
+            <name>Red Wine</name>
+            <price>8.00</price>
+            <allergyTags>none</allergyTags>
+        </dish>
+    </menu>
+    <staff>
+        <employee id="e01" role="waiter">
+            <name>John Smith</name>
+        </employee>
+        <employee id="e02" role="chef">
+            <name>Emily Johnson</name>
+        </employee>
+    </staff>
+    <orders>
+        <order id="5001" tableId="1" waiterId="e01">
+            <orderItems>
+                <item dishId="101" quantity="2"/>
+                <item dishId="103" quantity="2"/>
+            </orderItems>
+            <customerPreferences>
+                <preference type="allergy" description="без глютена"/>
+                <preference type="preference" description="дополнительный лимон"/>
+            </customerPreferences>
+            <status>preparing</status>
+        </order>
+        <order id="5002" tableId="2" waiterId="e01">
+            <orderItems>
+                <item dishId="102" quantity="1"/>
+                <item dishId="103" quantity="1"/>
+            </orderItems>
+            <customerPreferences>
+                <preference type="allergy" description="без лактозы"/>
+                <preference type="preference" description="меньше соли"/>
+            </customerPreferences>
+            <status>completed</status>
+        </order>
+    </orders>
+</restaurant>

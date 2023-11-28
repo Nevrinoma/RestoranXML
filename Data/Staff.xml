@@ -1,0 +1,14 @@
+<users>
+    <user>
+        <name>John Smith</name>
+        <username>johnsmith</username>
+        <password>john123</password>
+        <role>waiter</role>
+    </user>
+    <user>
+        <name>Emily Davis</name>
+        <username>emilydavis</username>
+        <password>emily456</password>
+        <role>chef</role>
+    </user>
+</users>
