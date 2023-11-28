@@ -1,4 +1,5 @@
-<restaurant name="Taste Delight" address="123 Gourmet Street">
+<?xml version="1.0"?>
+<restaurant name="Taste of Pain" address="Vanalinna 1">
     <tables>
         <table id="1" seats="4"/>
         <table id="2" seats="2"/>
@@ -20,6 +21,31 @@
             <price>8.00</price>
             <allergyTags>none</allergyTags>
         </dish>
+        <dish id="104" type="main">
+            <name>Chicken Alfredo Pasta</name>
+            <price>13.50</price>
+            <allergyTags>dairy, gluten</allergyTags>
+        </dish>
+        <dish id="105" type="appetizer">
+            <name>Bruschetta</name>
+            <price>5.99</price>
+            <allergyTags>gluten</allergyTags>
+        </dish>
+        <dish id="106" type="drink">
+            <name>Cappuccino</name>
+            <price>4.00</price>
+            <allergyTags>dairy</allergyTags>
+        </dish>
+        <dish id="107" type="main">
+            <name>Vegetarian Pizza</name>
+            <price>12.00</price>
+            <allergyTags>gluten</allergyTags>
+        </dish>
+        <dish id="108" type="drink">
+            <name>Vesi</name>
+            <price>1.5</price>
+            <allergyTags>none</allergyTags>
+        </dish>
     </menu>
     <staff>
         <employee id="e01" role="waiter">
@@ -36,8 +62,8 @@
                 <item dishId="103" quantity="2"/>
             </orderItems>
             <customerPreferences>
-                <preference type="allergy" description="без глютена"/>
-                <preference type="preference" description="дополнительный лимон"/>
+                <preference type="allergy" description="&#x431;&#x435;&#x437; &#x433;&#x43B;&#x44E;&#x442;&#x435;&#x43D;&#x430;"/>
+                <preference type="preference" description="&#x434;&#x43E;&#x43F;&#x43E;&#x43B;&#x43D;&#x438;&#x442;&#x435;&#x43B;&#x44C;&#x43D;&#x44B;&#x439; &#x43B;&#x438;&#x43C;&#x43E;&#x43D;"/>
             </customerPreferences>
             <status>preparing</status>
         </order>
@@ -47,8 +73,8 @@
                 <item dishId="103" quantity="1"/>
             </orderItems>
             <customerPreferences>
-                <preference type="allergy" description="без лактозы"/>
-                <preference type="preference" description="меньше соли"/>
+                <preference type="allergy" description="&#x431;&#x435;&#x437; &#x43B;&#x430;&#x43A;&#x442;&#x43E;&#x437;&#x44B;"/>
+                <preference type="preference" description="&#x43C;&#x435;&#x43D;&#x44C;&#x448;&#x435; &#x441;&#x43E;&#x43B;&#x438;"/>
             </customerPreferences>
             <status>completed</status>
         </order>

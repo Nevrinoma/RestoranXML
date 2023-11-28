@@ -1,0 +1,208 @@
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Навигационная панель */
+header {
+    background-color: #4b583a; /* Темно-оливково-зеленый цвет */
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #c0c0c0; /* Светло-серый цвет для наведения */
+}
+
+/* Логотип */
+nav a img {
+    height: 70px;
+}
+
+/* Фотография ресторана */
+#restaurant-photo {
+    width: 100%;
+    height: 620px;
+    display: block;
+}
+
+/* Секция панели управления */
+#dashboard {
+    padding: 20px;
+    background-color: #e0e0e0; /* Светло-серый фон */
+    text-align: center;
+}
+
+.dashboard-item {
+    margin-bottom: 15px;
+}
+
+/* Быстрый доступ */
+#quickAccess {
+    padding: 20px;
+    text-align: center;
+}
+
+#quickAccess button {
+    background-color: #4b583a; /* Темно-оливково-зеленый фон кнопок */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#quickAccess button:hover {
+    background-color: #5c6a4b; /* Более светлый оттенок для наведения */
+}
+
+/* Уведомления */
+#notifications {
+    padding: 20px;
+    background-color: #e0e0e0; /* Светло-серый фон */
+    text-align: center;
+}
+
+/* Футер */
+footer {
+    background-color: #4b583a; /* Темно-оливково-зеленый фон */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative; /* Изменено с 'fixed' на 'relative' */
+    width: 100%;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #c0c0c0; /* Светло-серый цвет ссылок */
+}
+
+footer a:hover {
+    color: white;
+}
+
+.main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.menu-item {
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.menu-container {
+    width: 60%;
+}
+.main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.menu-container,
+.add-dish-form {
+    flex: 1;
+    margin: 10px;
+}
+
+.menu-container {
+    width: 60%;
+}
+
+.add-dish-form {
+    width: 30%;
+    height: 30%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.add-dish-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-dish-form input,
+.add-dish-form button {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.add-dish-form button {
+    background-color: #4b583a; /* Темно-оливково-зеленый цвет */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Стилизация элемента select */
+select,input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+}
+
+/* Стилизация для опций select */
+select option {
+    padding: 10px;
+}
+
+/* Стилизация для фокуса на элементе */
+select:focus {
+    outline: none;
+    border-color: #4b583a; /* Темно-оливково-зеленый цвет для акцента */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Стиль для disabled select */
+select:disabled {
+    background-color: #e0e0e0;
+    color: #666;
+}

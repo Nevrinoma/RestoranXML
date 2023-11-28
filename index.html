@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teie Restoran</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+    <nav>
+        <a href="index.html"><img src="Images/logo.png" alt="Logo"></a>
+        <ul>
+            <li><a href="pages/menu.php">Menüü</a></li>
+            <li><a href="pages/orders.html">Tellimused</a></li>
+            <li><a href="pages/tables.html">Lauad</a></li>
+            <li><a href="pages/staff.html">Personal</a></li>
+        </ul>
+        <a href="pages/login.php" id="loginButton">Logi sisse</a>
+    </nav>
+</header>
+<img src="Images/restWidePict.jpg" alt="Фото ресторана" id="restaurant-photo">
+
+
+<section id="dashboard">
+    <h2>Juhtpaneel</h2>
+    <div class="dashboard-item">
+        <p>Aktiivseid tellimusi: <span id="activeOrders">0</span></p>
+    </div>
+    <div class="dashboard-item">
+        <p>Vabu laudu: <span id="freeTables">0</span></p>
+    </div>
+    <div class="dashboard-item">
+        <p>Köögi staatus: <span id="kitchenStatus">Avatud</span></p>
+    </div>
+</section>
+
+<section id="quickAccess">
+    <h2>Kiirjuurdepääs</h2>
+    <button onclick="location.href='pages/addOrder.html'">Lisa tellimus</button>
+    <button onclick="location.href='pages/menu.php'">Vaata menüüd</button>
+</section>
+
+<section id="notifications">
+    <h2>Teated</h2>
+    <div id="notificationArea">
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2023 Taste of Pain. Kõik õigused kaitstud.</p>
+    <p>Kontakt: <a href="mailto:contact@yourrestaurant.com">giuliano.lember@tasteofpain.com</a></p>
+</footer>
+
+</body>
+</html>
