@@ -15,7 +15,7 @@
             <li><a href="pages/tables.html">Lauad</a></li>
             <li><a href="pages/staff.html">Personal</a></li>
         </ul>
-        <a href="pages/login.php" id="loginButton">Logi sisse</a>
+        <a href="login.php" id="loginButton">Logi sisse</a>
     </nav>
 </header>
 <div class="container">
