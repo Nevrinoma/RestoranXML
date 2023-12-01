@@ -11,15 +11,15 @@
         <a href="../index.html"><img src="../Images/logo.png" alt="Logo"></a>
         <ul>
             <li><a href="menu.php">Menüü</a></li>
-            <li><a href="pages/orders.html">Tellimused</a></li>
-            <li><a href="pages/tables.html">Lauad</a></li>
-            <li><a href="pages/staff.html">Personal</a></li>
+            <li><a href="pages/orders.php">Tellimused</a></li>
+            <li><a href="pages/tables.php">Lauad</a></li>
+            <li><a href="pages/staff.php">Personal</a></li>
         </ul>
         <a href="login.php" id="loginButton">Logi sisse</a>
     </nav>
 </header>
 <div class="container">
-    <!-- Форма входа -->
+
     <form id="loginForm" action="../php/validateLogin.php" method="post">
         <input type="text" name="username" placeholder="Имя пользователя" required>
         <input type="password" name="password" placeholder="Пароль" required>
@@ -28,7 +28,7 @@
         <p class="switch">Добавить работника <span onclick="showEmployeeRegister()">Регистрация сотрудника</span></p>
     </form>
 
-    <!-- Форма регистрации клиента -->
+
     <form id="registerForm" action="../php/registerUser.php" method="post" style="display:none;">
         <input type="text" name="newUsername" placeholder="Новое имя пользователя" required>
         <input type="password" name="newPassword" placeholder="Новый пароль" required>
@@ -36,7 +36,7 @@
         <button type="submit">Зарегистрироваться</button>
     </form>
 
-    <!-- Форма регистрации сотрудника -->
+
     <form id="employeeRegisterForm" action="../php/registerUser.php" method="post" style="display:none;">
         <input type="text" name="newUsername" placeholder="Новое имя пользователя" required>
         <input type="password" name="newPassword" placeholder="Новый пароль" required>

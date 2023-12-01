@@ -7,8 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     foreach ($xml->user as $user) {
         if ($user->username == $username && $user->password == $password) {
-            // Авторизация успешна
-            header("Location: ../index.php");
+            header("Location: ../index.html");
             exit;
         }
     }

@@ -6,9 +6,9 @@ body {
     padding: 0;
 }
 
-/* Навигационная панель */
+
 header {
-    background-color: #4b583a; /* Темно-оливково-зеленый цвет */
+    background-color: #4b583a; 
     color: white;
     padding: 10px 0;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
@@ -40,25 +40,25 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #c0c0c0; /* Светло-серый цвет для наведения */
+    color: #c0c0c0; 
 }
 
-/* Логотип */
+
 nav a img {
     height: 70px;
 }
 
-/* Фотография ресторана */
+
 #restaurant-photo {
     width: 100%;
     height: 620px;
     display: block;
 }
 
-/* Секция панели управления */
+
 #dashboard {
     padding: 20px;
-    background-color: #e0e0e0; /* Светло-серый фон */
+    background-color: #e0e0e0;
     text-align: center;
 }
 
@@ -66,14 +66,14 @@ nav a img {
     margin-bottom: 15px;
 }
 
-/* Быстрый доступ */
+
 #quickAccess {
     padding: 20px;
     text-align: center;
 }
 
 #quickAccess button {
-    background-color: #4b583a; /* Темно-оливково-зеленый фон кнопок */
+    background-color: #4b583a; 
     color: white;
     border: none;
     padding: 10px 15px;
@@ -83,23 +83,23 @@ nav a img {
 }
 
 #quickAccess button:hover {
-    background-color: #5c6a4b; /* Более светлый оттенок для наведения */
+    background-color: #5c6a4b; 
 }
 
-/* Уведомления */
+
 #notifications {
     padding: 20px;
-    background-color: #e0e0e0; /* Светло-серый фон */
+    background-color: #e0e0e0; 
     text-align: center;
 }
 
-/* Футер */
+
 footer {
-    background-color: #4b583a; /* Темно-оливково-зеленый фон */
+    background-color: #4b583a; 
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: relative; /* Изменено с 'fixed' на 'relative' */
+    position: relative; 
     width: 100%;
 }
 
@@ -108,7 +108,7 @@ footer p {
 }
 
 footer a {
-    color: #c0c0c0; /* Светло-серый цвет ссылок */
+    color: #c0c0c0; 
 }
 
 footer a:hover {
@@ -169,13 +169,13 @@ footer a:hover {
 }
 
 .add-dish-form button {
-    background-color: #4b583a; /* Темно-оливково-зеленый цвет */
+    background-color: #4b583a; 
     color: white;
     border: none;
     cursor: pointer;
 }
 
-/* Стилизация элемента select */
+
 select,input {
     width: 100%;
     padding: 10px;
@@ -189,20 +189,97 @@ select,input {
     font-size: 1em;
 }
 
-/* Стилизация для опций select */
+
 select option {
     padding: 10px;
 }
 
-/* Стилизация для фокуса на элементе */
 select:focus {
     outline: none;
-    border-color: #4b583a; /* Темно-оливково-зеленый цвет для акцента */
+    border-color: #4b583a; 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Стиль для disabled select */
+
 select:disabled {
     background-color: #e0e0e0;
     color: #666;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; 
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.staff-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.staff-table th, 
+.staff-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.staff-table th {
+    background-color: #4b583a;
+    color: white;
+}
+
+.staff-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.staff-table tr:hover {
+    background-color: #ddd;
+}
+
+/* Стили для кнопок в таблице */
+.staff-table .edit-btn, 
+.staff-table .delete-btn {
+    background-color: #4b583a;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.staff-table .edit-btn:hover,
+.staff-table .delete-btn:hover {
+    background-color: #5c6a4b;
 }

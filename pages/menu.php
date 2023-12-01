@@ -12,9 +12,9 @@
         <a href="../index.html"><img src="../Images/logo.png" alt="Logo"></a>
         <ul>
             <li><a href="menu.php">Menüü</a></li>
-            <li><a href="pages/orders.html">Tellimused</a></li>
-            <li><a href="pages/tables.html">Lauad</a></li>
-            <li><a href="pages/staff.html">Personal</a></li>
+            <li><a href="orders.php">Tellimused</a></li>
+            <li><a href="tables.php">Lauad</a></li>
+            <li><a href="staff.php">Personal</a></li>
         </ul>
         <a href="pages/login.php" id="loginButton">Logi sisse</a>
     </nav>

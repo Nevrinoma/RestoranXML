@@ -46,7 +46,7 @@
             <price>1.5</price>
             <allergyTags>none</allergyTags>
         </dish>
-    </menu>
+    <dish id="109" type="main"><name>Fish with Mushrooms</name><price>19.99</price><allergyTags>fish,mushrooms,egg,cianid</allergyTags></dish></menu>
     <staff>
         <employee id="e01" role="waiter">
             <name>John Smith</name>
