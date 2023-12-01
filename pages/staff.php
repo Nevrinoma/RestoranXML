@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php include '../php/loadStaff.php'; ?>
+                <?php include '../php/loadStuff.php'; ?>
             </tbody>
         </table>
 

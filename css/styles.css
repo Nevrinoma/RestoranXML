@@ -267,7 +267,6 @@ select:disabled {
     background-color: #ddd;
 }
 
-/* Стили для кнопок в таблице */
 .staff-table .edit-btn, 
 .staff-table .delete-btn {
     background-color: #4b583a;
