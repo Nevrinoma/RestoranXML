@@ -1,5 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $Name = $_POST["Name"]; 
     $newUsername = $_POST["newUsername"];
     $newPassword = $_POST["newPassword"];
     $role = $_POST["role"]; 
@@ -14,12 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $newUser = $xml->addChild("user");
+    $newUser->addChild("name", $Name); 
     $newUser->addChild("username", $newUsername);
     $newUser->addChild("password", $newPassword);
     $newUser->addChild("role", $role); 
 
     $xml->asXML("../Data/Users.xml");
 
-    echo "Пользователь успешно зарегистрирован";
+    header("Location: ../login.html");
+    exit;
 }
 ?>

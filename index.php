@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="et">
 <head>
@@ -5,18 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teie Restoran</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="../js/confirmLogout.js"></script>
 </head>
 <body>
 <header>
     <nav>
-        <a href="index.html"><img src="Images/logo.png" alt="Logo"></a>
+        <a href="index.php"><img src="Images/logo.png" alt="Logo"></a>
         <ul>
             <li><a href="pages/menu.php">Menüü</a></li>
             <li><a href="pages/orders.php">Tellimused</a></li>
             <li><a href="pages/tables.php">Lauad</a></li>
             <li><a href="pages/staff.php">Personal</a></li>
         </ul>
-        <a href="pages/login.php" id="loginButton">Logi sisse</a>
+        <?php
+        if (isset($_SESSION["username"])) {
+            echo '<a href="javascript:confirmLogout();">Привет, ' . $_SESSION["username"] . '</a>';
+        } else {
+            echo '<a href="pages/login.php">Logi sisse</a>';
+        }
+        ?>
     </nav>
 </header>
 <img src="Images/restWidePict.jpg" alt="Фото ресторана" id="restaurant-photo">

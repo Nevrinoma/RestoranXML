@@ -1,21 +1,31 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="et">
 <head>
     <meta charset="UTF-8">
     <title>Авторизация и Регистрация</title>
     <link rel="stylesheet" href="../css/loginStyle.css">
+    <script src="../js/confirmLogout.js"></script>
 </head>
 <body>
 <header>
     <nav>
-        <a href="../index.html"><img src="../Images/logo.png" alt="Logo"></a>
+        <a href="../index.php"><img src="../Images/logo.png" alt="Logo"></a>
         <ul>
             <li><a href="menu.php">Menüü</a></li>
-            <li><a href="pages/orders.php">Tellimused</a></li>
-            <li><a href="pages/tables.php">Lauad</a></li>
-            <li><a href="pages/staff.php">Personal</a></li>
+            <li><a href="orders.php">Tellimused</a></li>
+            <li><a href="tables.php">Lauad</a></li>
+            <li><a href="staff.php">Personal</a></li>
         </ul>
-        <a href="login.php" id="loginButton">Logi sisse</a>
+        <?php
+        if (isset($_SESSION["username"])) {
+            echo '<a href="javascript:confirmLogout();">Привет, ' . $_SESSION["username"] . '</a>';
+        } else {
+            echo '<a href="login.php">Logi sisse</a>';
+        }
+        ?>
     </nav>
 </header>
 <div class="container">
@@ -30,6 +40,7 @@
 
 
     <form id="registerForm" action="../php/registerUser.php" method="post" style="display:none;">
+        <input type="text" name="Name" placeholder="Полное имя" required>
         <input type="text" name="newUsername" placeholder="Новое имя пользователя" required>
         <input type="password" name="newPassword" placeholder="Новый пароль" required>
         <input type="hidden" name="role" value="client">
@@ -38,6 +49,7 @@
 
 
     <form id="employeeRegisterForm" action="../php/registerUser.php" method="post" style="display:none;">
+        <input type="text" name="Name" placeholder="Полное имя" required>
         <input type="text" name="newUsername" placeholder="Новое имя пользователя" required>
         <input type="password" name="newPassword" placeholder="Новый пароль" required>
         <select name="role">
@@ -47,6 +59,7 @@
         <button type="submit">Зарегистрировать сотрудника</button>
     </form>
 </div>
+
 
 <script src="../js/loginScript.js"></script>
 </body>
