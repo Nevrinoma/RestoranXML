@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $xml->asXML("../Data/Users.xml");
 
-    header("Location: ../login.html");
+    header("Location: ../login.php");
     exit;
 }
 ?>

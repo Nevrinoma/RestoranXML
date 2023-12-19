@@ -12,4 +12,10 @@
         <password>emily456</password>
         <role>chef</role>
     </user>
-</users>
+    <user>
+    <name>Mister Customer</name>
+    <username>customer1</username>
+    <password>qwe123</password>
+    <role>client</role>
+    </user>
+    </users>

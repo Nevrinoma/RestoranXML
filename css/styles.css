@@ -115,12 +115,6 @@ footer a:hover {
     color: white;
 }
 
-.main {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-}
-
 .menu-item {
     background-color: white;
     padding: 10px;
@@ -129,23 +123,15 @@ footer a:hover {
     margin-bottom: 20px;
 }
 
-.menu-container {
-    width: 60%;
-}
 .main {
     display: flex;
     justify-content: space-between;
     padding: 20px;
 }
 
-.menu-container,
 .add-dish-form {
     flex: 1;
     margin: 10px;
-}
-
-.menu-container {
-    width: 60%;
 }
 
 .add-dish-form {
@@ -280,5 +266,65 @@ select:disabled {
 
 .staff-table .edit-btn:hover,
 .staff-table .delete-btn:hover {
+    background-color: #5c6a4b;
+}
+
+
+.main, .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.menu-container {
+    flex: 1; 
+    margin-right: 20px; 
+}
+
+.order-constructor {
+    flex: 0 0 350px; 
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.order-constructor form {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-constructor label {
+    margin-top: 10px;
+}
+
+.order-constructor select, .order-constructor input[type="text"], .order-constructor input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.order-constructor input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.order-constructor input[type="number"] {
+    width: 50px; /* Уменьшите размер поля количества */
+}
+
+.order-constructor input[type="submit"] {
+    background-color: #4b583a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.order-constructor input[type="submit"]:hover {
     background-color: #5c6a4b;
 }

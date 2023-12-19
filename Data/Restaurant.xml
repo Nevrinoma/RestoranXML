@@ -65,7 +65,7 @@
                 <preference type="allergy" description="&#x431;&#x435;&#x437; &#x433;&#x43B;&#x44E;&#x442;&#x435;&#x43D;&#x430;"/>
                 <preference type="preference" description="&#x434;&#x43E;&#x43F;&#x43E;&#x43B;&#x43D;&#x438;&#x442;&#x435;&#x43B;&#x44C;&#x43D;&#x44B;&#x439; &#x43B;&#x438;&#x43C;&#x43E;&#x43D;"/>
             </customerPreferences>
-            <status>preparing</status>
+            <status>active</status>
         </order>
         <order id="5002" tableId="2" waiterId="e01">
             <orderItems>

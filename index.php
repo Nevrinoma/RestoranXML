@@ -8,7 +8,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teie Restoran</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="../js/confirmLogout.js"></script>
+    <script src="js/confirmLogout.js"></script>
 </head>
 <body>
 <header>
@@ -47,7 +47,7 @@ session_start();
 
 <section id="quickAccess">
     <h2>Kiirjuurdepääs</h2>
-    <button onclick="location.href='pages/addOrder.html'">Lisa tellimus</button>
+    <button onclick="location.href='pages/addOrder.php'">Lisa tellimus</button>
     <button onclick="location.href='pages/menu.php'">Vaata menüüd</button>
 </section>
 
