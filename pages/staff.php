@@ -60,7 +60,6 @@ session_start();
                 <?php include '../php/loadStuff.php'; ?>
             </tbody>
         </table>
-
         
         <div id="editModal" class="modal">
             <div class="modal-content">

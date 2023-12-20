@@ -56,7 +56,13 @@
         <employee id="e02" role="chef">
             <name>Emily Johnson</name>
         </employee>
-    </staff>
+        <employee id="e03" role="waiter">
+            <name>Mark Sumenkov</name>
+        </employee>
+        <employee id="e04" role="chef">
+        <name>Viktoria Foterro</name>
+        </employee>
+        </staff>
     <orders>
         <order id="5001" tableId="1" waiterId="e01" customerUserName="customer1">
             <orderItems>

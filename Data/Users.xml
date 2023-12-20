@@ -18,4 +18,16 @@
         <password>qwe123</password>
         <role>client</role>
     </user>
-    </users>
+    <user>
+        <name>Mark Sumenkov</name>
+        <username>sumenkov</username>
+        <password>qwe123</password>
+        <role>waiter</role>
+    </user>
+    <user>
+        <name>Viktoria Foterro</name>
+        <username>foterro</username>
+        <password>povar123</password>
+        <role>chef</role>
+    </user>
+</users>

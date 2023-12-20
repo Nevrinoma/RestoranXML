@@ -6,6 +6,36 @@ function hidePassword(td) {
     td.textContent = '******'; 
 }
 
+function editStaff(username, name, password, role) {
+    document.getElementById('editUsername').value = username;
+    document.getElementById('editName').value = name;
+    document.getElementById('editPassword').value = password.replace(/./g, '*');
+    document.getElementById('editPassword').setAttribute('data-password', password);
+    document.getElementById('editRole').value = role;
+    document.getElementById('editModal').style.display = 'block';
+}
+
+
+document.getElementById('editForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    fetch('php/editStaff.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+        hideModal();
+        var staffTable = document.getElementById("staffTable");
+        staffTable.getElementsByTagName("tbody")[0].innerHTML = "";
+        loadStaffData();
+    })
+    .catch(error => alert('Ошибка: ' + error));
+});
+
+
 
 function showModal(editButton) {
     var row = editButton.parentNode.parentNode;
@@ -76,3 +106,14 @@ function deleteStaff(deleteButton) {
         xhr.send('username=' + encodeURIComponent(username));
     }
 }
+
+function loadStaffData() {
+    fetch('../php/loadStuff.php')
+    .then(response => response.text())
+    .then(data => {
+        var staffTable = document.getElementById("staffTable");
+        staffTable.getElementsByTagName("tbody")[0].innerHTML = data;
+    })
+    .catch(error => console.error('Ошибка:', error));
+}
+

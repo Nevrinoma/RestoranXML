@@ -57,9 +57,9 @@ session_start();
             <input type="text" name="name" placeholder="Roogi nimetus" required>
             <input type="text" name="price" placeholder="Hind" required>
             <select name="type">
-                <option value="main">Põhiroog</option>
-                <option value="appetizer">Eelroog</option>
-                <option value="drink">Jook</option>
+                <option value="main">Pearoad</option>
+                <option value="appetizer">Suupisted</option>
+                <option value="drink">Joogid</option>
             </select>
             <input type="text" name="allergens" placeholder="Allergeenid">
             <button type="submit">Lisa</button>

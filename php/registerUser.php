@@ -5,24 +5,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newPassword = $_POST["newPassword"];
     $role = $_POST["role"]; 
 
-    $xml = simplexml_load_file("../Data/Users.xml") or die("Error: Cannot load file");
-
-    foreach ($xml->user as $user) {
+    $usersXml = simplexml_load_file("../Data/Users.xml") or die("Error: Cannot load Users.xml");
+    $restaurantXml = simplexml_load_file("../Data/Restaurant.xml") or die("Error: Cannot load Restaurant.xml");
+    foreach ($usersXml->user as $user) {
         if ($user->username == $newUsername) {
             echo "Пользователь с таким именем уже существует";
             exit;
         }
     }
 
-    $newUser = $xml->addChild("user");
+    $newUser = $usersXml->addChild("user");
     $newUser->addChild("name", $Name); 
     $newUser->addChild("username", $newUsername);
     $newUser->addChild("password", $newPassword);
     $newUser->addChild("role", $role); 
+    $usersXml->asXML("../Data/Users.xml");
 
-    $xml->asXML("../Data/Users.xml");
+    $newId = "e" . str_pad((count($restaurantXml->staff->employee) + 1), 2, "0", STR_PAD_LEFT);
 
-    header("Location: ../login.php");
+    $newEmployee = $restaurantXml->staff->addChild("employee");
+    $newEmployee->addAttribute("id", $newId);
+    $newEmployee->addAttribute("role", $role);
+    $newEmployee->addChild("name", $Name);
+    $restaurantXml->asXML("../Data/Restaurant.xml");
+
+    header("Location: ../pages/login.php");
     exit;
 }
 ?>
