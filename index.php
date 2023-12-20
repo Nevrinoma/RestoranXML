@@ -66,7 +66,7 @@ $kitchenStatus = ($activeOrders > 5) ? 'Ei tööta' : 'Avatud';
 
 
 </header>
-<img src="Images/restWidePict.jpg" alt="Фото ресторана" id="restaurant-photo">
+<img src="Images/restWidePict.jpg" alt="Restoraani pilt" id="restaurant-photo">
 
 
 <section id="dashboard">
@@ -86,6 +86,12 @@ $kitchenStatus = ($activeOrders > 5) ? 'Ei tööta' : 'Avatud';
     <h2>Kiirjuurdepääs</h2>
     <button onclick="location.href='pages/addOrder.php'">Lisa tellimus</button>
     <button onclick="location.href='pages/menuCustomer.php'">Vaata menüüd</button>
+    <button onclick="location.href='php/xmlToJson.php'">XML -> JSON</button>
+    <br><br>
+    <a href="https://lember21.thkit.ee/RestoranXML/Data/Restaurant.xml">Restoran XML fail</a><br>
+    <a href="https://lember21.thkit.ee/RestoranXML/Data/Users.xml">Users XML fail</a><br>
+    <a href="https://lember21.thkit.ee/RestoranXML/Data/Restaurant.json">Restoran JSON fail</a><br>
+    <a href="https://lember21.thkit.ee/RestoranXML/Data/Users.json">RestoranXML JSON</a><br>
 </section>
 
 <section id="notifications">
