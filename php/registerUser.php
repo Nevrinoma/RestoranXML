@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $restaurantXml = simplexml_load_file("../Data/Restaurant.xml") or die("Error: Cannot load Restaurant.xml");
     foreach ($usersXml->user as $user) {
         if ($user->username == $newUsername) {
-            echo "Пользователь с таким именем уже существует";
+            echo "Selle nimega kasutaja on juba olemas";
             exit;
         }
     }

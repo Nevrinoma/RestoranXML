@@ -10,7 +10,7 @@ function getWaiterName($waiterId, $usersXml) {
             return $user->name;
         }
     }
-    return "Неизвестный";
+    return "Teadmata";
 }
 
 function getCustomerName($customerUserName, $usersXml) {
@@ -19,7 +19,7 @@ function getCustomerName($customerUserName, $usersXml) {
             return (string)$user->name; 
         }
     }
-    return "Неизвестный";
+    return "Teadmata";
 }
 
 function displayOrders($restaurantXml, $usersXml, $status) {
@@ -43,17 +43,17 @@ function displayOrders($restaurantXml, $usersXml, $status) {
                 }
             }
             echo "<div class='order'>";
-            echo "<h3>Заказ №" . $order['id'] . ", для " . getCustomerName($order['customerUserName'], $usersXml) . "</h3>";
-            echo "<p>Столик: " . $order['tableId'] . ", Официант: " . ($userName ? $userName : "Неизвестен") . "</p>";
-            echo "<p>Статус: " . $order->status . "</p>";
+            echo "<h3>Tellimus №" . $order['id'] . ", Klient: " . getCustomerName($order['customerUserName'], $usersXml) . "</h3>";
+            echo "<p>Laud: " . $order['tableId'] . ", Teenindaja: " . ($userName ? $userName : "Teadmata") . "</p>";
+            echo "<p>Staatus: " . $order->status . "</p>";
             
-            echo "<h4>Блюда в заказе:</h4>";
+            echo "<h4>Tellimusel olevad toidud:</h4>";
             foreach ($order->orderItems->item as $item) {
                 $dish = $restaurantXml->menu->xpath("//dish[@id='" . $item['dishId'] . "']")[0];
                 echo "<p>" . $dish->name . " x" . $item['quantity'] . "</p>";
             }
 
-            echo "<h4>Предпочтения клиента:</h4>";
+            echo "<h4>Klientide eelistused:</h4>";
             foreach ($order->customerPreferences->preference as $preference) {
                 echo "<p>" . $preference['dish']. ": " . $preference['description'] . "</p>";
             }
@@ -84,10 +84,9 @@ function displayOrdersWithDetails($restaurantXml, $usersXml, $status) {
             }
 
             echo "<div class='order'>";
-            echo "<h3>Заказ №" . $order['id'] . ", для " . getCustomerName($order['customerUserName'], $usersXml) . "</h3>";
-            echo "<p>Столик: " . $order['tableId'] . ", Официант: " . ($waiterName ? $waiterName : "Неизвестен") . "</p>";
-
-            echo "<h4>Блюда в заказе:</h4>";
+            echo "<h3>Tellimus №" . $order['id'] . ", Klient: " . getCustomerName($order['customerUserName'], $usersXml) . "</h3>";
+            echo "<p>Laud: " . $order['tableId'] . ", Teenindaja: " . ($userName ? $userName : "Teadmata") . "</p>";
+            echo "<h4>Tellimusel olevad toidud:</h4>";
             $totalPrice = 0;
             echo "<ul>";
             foreach ($order->orderItems->item as $item) {
@@ -96,7 +95,7 @@ function displayOrdersWithDetails($restaurantXml, $usersXml, $status) {
                 $totalPrice += (float)$dish->price * (int)$item['quantity'];
             }
             echo "</ul>";
-            echo "<p>Общая стоимость: " . $totalPrice . "€</p>";
+            echo "<p>Kokku: " . $totalPrice . "€</p>";
 
             echo "</div>";
         }
@@ -111,7 +110,7 @@ function displayOrdersWithDetails($restaurantXml, $usersXml, $status) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menüü - Teie Restoran</title>
+    <title>Minu tellimused</title>
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../js/confirmLogout.js"></script>
 </head>
@@ -150,12 +149,12 @@ function displayOrdersWithDetails($restaurantXml, $usersXml, $status) {
 </nav>
 </header>
 <div class="active-orders">
-    <h2>Активный заказ</h2>
+    <h2>Aktiivne tellimus</h2>
     <?php displayOrders($restaurantXml, $usersXml, "active"); ?>
 </div>
 
 <div class="completed-orders">
-    <h2>Предыдущие заказы</h2>
+    <h2>Eelmised tellimused</h2>
     <?php displayOrdersWithDetails($restaurantXml, $usersXml, "served"); ?>
 </div>
 

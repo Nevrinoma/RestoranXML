@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
     }
-    echo "Неправильное имя пользователя или пароль";
+    echo "Vale kasutajanimi või salasõna";
 }
 
 ?>

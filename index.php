@@ -173,5 +173,19 @@ $kitchenStatus = ($activeOrders > 5) ? 'Ei tööta' : 'Avatud';
     <p>Kontakt: <a href="mailto:contact@yourrestaurant.com">giuliano.lember@tasteofpain.com</a></p>
 </footer>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var addOrderButton = document.querySelector('#quickAccess button');
+
+        addOrderButton.addEventListener('click', function(event) {
+            <?php if (empty($_SESSION['role'])): ?>
+                event.preventDefault();
+                window.location.href = 'pages/login.php';
+            <?php endif; ?>
+        });
+    });
+</script>
+
+
 </body>
 </html>

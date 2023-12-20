@@ -32,7 +32,7 @@ document.getElementById('editForm').addEventListener('submit', function(e) {
         staffTable.getElementsByTagName("tbody")[0].innerHTML = "";
         loadStaffData();
     })
-    .catch(error => alert('Ошибка: ' + error));
+    .catch(error => alert('Error: ' + error));
 });
 
 
@@ -71,11 +71,11 @@ document.getElementById('editForm').onsubmit = function(event) {
     
     xhr.onload = function() {
         if (xhr.status === 200) {
-            alert('Информация о сотруднике обновлена');
+            alert('Töötajate andmed on ajakohastatud');
             hideModal();
             
         } else {
-            alert('Произошла ошибка при обновлении информации о сотруднике');
+            alert('Töötaja andmete uuendamisel tekkis viga');
         }
     };
     
@@ -84,7 +84,7 @@ document.getElementById('editForm').onsubmit = function(event) {
 
 
 function deleteStaff(deleteButton) {
-    if (confirm('Вы уверены, что хотите удалить этого сотрудника?')) {
+    if (confirm('Kas olete kindel, et soovite selle töötaja eemaldada?')) {
         var row = deleteButton.parentNode.parentNode;
         var username = row.cells[1].innerText;
 
@@ -96,10 +96,10 @@ function deleteStaff(deleteButton) {
         xhr.onload = function() {
             if (xhr.status === 200) {
                 
-                alert('Сотрудник удален');
+                alert('Töötaja eemaldatud');
                 
             } else {
-                alert('Произошла ошибка при удалении сотрудника');
+                alert('Töötaja kustutamisel tekkis viga');
             }
         };
 
@@ -114,6 +114,6 @@ function loadStaffData() {
         var staffTable = document.getElementById("staffTable");
         staffTable.getElementsByTagName("tbody")[0].innerHTML = data;
     })
-    .catch(error => console.error('Ошибка:', error));
+    .catch(error => console.error('Error:', error));
 }
 

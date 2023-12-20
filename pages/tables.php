@@ -5,7 +5,7 @@ session_start();
 <html lang="et">
 <head>
     <meta charset="UTF-8">
-    <title>Столы Ресторана</title>
+    <title>Restorani lauad</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -42,15 +42,15 @@ session_start();
 </nav>
 </header>
     <main>
-        <h1>Столы Ресторана</h1>
+        <h1>Restorani lauad</h1>
         <div class="tables-container">
             <?php
                 $xml = simplexml_load_file("../Data/Restaurant.xml");
                 foreach ($xml->tables->table as $table) {
                     echo "<div class='table'>";
-                    echo "<h2>Стол №" . $table['id'] . "</h2>";
-                    echo "<p>Мест: " . $table['seats'] . "</p>";
-                    echo "<p>Занят: " . ($table['occupied'] == 'true' ? 'Да' : 'Нет') . "</p>";
+                    echo "<h2>Laud №" . $table['id'] . "</h2>";
+                    echo "<p>Kohad: " . $table['seats'] . "</p>";
+                    echo "<p>Reserveeritud: " . ($table['occupied'] == 'true' ? 'Jah' : 'Ei') . "</p>";
                     
                     echo "</div>";
                 }
@@ -59,10 +59,10 @@ session_start();
         <div class="add-dish-form">
         <form action="../php/addTable.php" method="post">
             <h1>Lisa uus: </h1>
-            <label for="seats">Количество мест:</label>
+            <label for="seats">Kohtade arv:</label>
             <input type="number" name="seats" id="seats" required>
 
-            <input type="submit" value="Добавить стол">
+            <input type="submit" value="Lisa laud">
         </form>
         </div>
     </main>

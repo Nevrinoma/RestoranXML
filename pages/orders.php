@@ -10,7 +10,7 @@ function getWaiterName($waiterId, $usersXml) {
             return $user->name;
         }
     }
-    return "Неизвестный";
+    return "Teadmata";
 }
 
 function getCustomerName($customerUserName, $usersXml) {
@@ -19,7 +19,7 @@ function getCustomerName($customerUserName, $usersXml) {
             return (string)$user->name; 
         }
     }
-    return "Неизвестный";
+    return "Teadmata";
 }
 
 function displayOrders($restaurantXml, $usersXml, $status) {
@@ -42,17 +42,17 @@ function displayOrders($restaurantXml, $usersXml, $status) {
                 }
             }
             echo "<div class='order'>";
-            echo "<h3>Заказ №" . $order['id'] . ", для " . getCustomerName($order['customerUserName'], $usersXml) . "</h3>";
-            echo "<p>Столик: " . $order['tableId'] . ", Официант: " . ($userName ? $userName : "Неизвестен") . "</p>";
-            echo "<p>Статус: " . $order->status . "</p>";
+            echo "<h3>Tellimine №" . $order['id'] . ", Klient: " . getCustomerName($order['customerUserName'], $usersXml) . "</h3>";
+            echo "<p>Laud: " . $order['tableId'] . ", Teenindaja: " . ($userName ? $userName : "Teadmata") . "</p>";
+            echo "<p>Staatus: " . $order->status . "</p>";
             
-            echo "<h4>Блюда в заказе:</h4>";
+            echo "<h4>Tellimusel olevad toidud:</h4>";
             foreach ($order->orderItems->item as $item) {
                 $dish = $restaurantXml->menu->xpath("//dish[@id='" . $item['dishId'] . "']")[0];
                 echo "<p>" . $dish->name . " x" . $item['quantity'] . "</p>";
             }
 
-            echo "<h4>Предпочтения клиента:</h4>";
+            echo "<h4>Klientide eelistused:</h4>";
             foreach ($order->customerPreferences->preference as $preference) {
                 echo "<p>" . $preference['dish']. ": " . $preference['description'] . "</p>";
             }
@@ -67,11 +67,22 @@ function updateOrderStatus($restaurantXml, $orderId, $newStatus) {
     foreach ($restaurantXml->orders->order as $order) {
         if ($order['id'] == $orderId) {
             $order->status = $newStatus;
+            if ($newStatus == 'served') {
+                $tableId = (string)$order['tableId'];
+                foreach ($restaurantXml->tables->table as $table) {
+                    if ($table['id'] == $tableId) {
+                        $table['occupied'] = 'false'; 
+                        break;
+                    }
+                }
+            }
+
             break;
         }
     }
     $restaurantXml->asXML("../Data/Restaurant.xml");
 }
+
 
 if (isset($_POST['update_status'])) {
     updateOrderStatus($restaurantXml, $_POST['order_id'], $_POST['status']);
@@ -84,7 +95,7 @@ if (isset($_POST['update_status'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menüü - Teie Restoran</title>
+    <title>Tellimused</title>
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../js/confirmLogout.js"></script>
 </head>
@@ -123,34 +134,34 @@ if (isset($_POST['update_status'])) {
 </nav>
 </header>
 <div class="active-orders">
-    <h2>Активные заказы</h2>
+    <h2>Aktiivsed tellimused</h2>
     <?php displayOrders($restaurantXml, $usersXml, "active"); ?>
 </div>
 
 <div class="completed-orders">
-    <h2>Готовые заказы</h2>
+    <h2>Tehtud tellimused</h2>
     <?php displayOrders($restaurantXml, $usersXml,  "completed"); ?>
 </div>
 
 <div class="completed-orders">
-    <h2>Выполненные заказы</h2>
+    <h2>Lõpetatud tellimused</h2>
     <?php displayOrders($restaurantXml, $usersXml, "served"); ?>
 </div>
 
 <div class="add-dish-form">
-    <h2>Изменить статус заказа</h2>
+    <h2>Tellimuse staatuse muutmine</h2>
     <form method="post" action="">
         <select name="order_id">
             <?php foreach ($restaurantXml->orders->order as $order): ?>
-                <option value="<?= $order['id'] ?>">Заказ №<?= $order['id'] ?></option>
+                <option value="<?= $order['id'] ?>">Tellimus №<?= $order['id'] ?></option>
             <?php endforeach; ?>
         </select>
         <select name="status">
-            <option value="active">Готовится</option>
-            <option value="completed">Готов</option>
-            <option value="served">Подан</option>
+            <option value="active">Toiduvalmistamine</option>
+            <option value="completed">Valmis</option>
+            <option value="served">Teenindatakse kliendile</option>
         </select>
-        <input type="submit" name="update_status" value="Обновить статус">
+        <input type="submit" name="update_status" value="Staatuse ajakohastamine">
     </form>
 </div>
 

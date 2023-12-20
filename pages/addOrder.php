@@ -30,7 +30,7 @@ function loadMenu() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tellimus </title>
+    <title>Uus Tellimus </title>
     <link rel="stylesheet" href="../css/orderStyle.css">
     <script src="../js/confirmLogout.js"></script>
 </head>
@@ -77,15 +77,15 @@ function loadMenu() {
 
     <div class="order-constructor">
         <form action="../php/addOrderScript.php" method="post">
-            <label for="tableId">Выберите столик:</label>
+            <label for="tableId">Valige laud:</label>
             <select name="tableId" id="tableId">
                 <?php foreach ($xml->tables->table as $table): ?>
                     <?php if ($table['occupied'] == "false"): ?>
-                        <option value="<?= $table['id'] ?>">Столик <?= $table['id'] ?> (<?= $table['seats'] ?> мест)</option>
+                        <option value="<?= $table['id'] ?>">laud <?= $table['id'] ?> (<?= $table['seats'] ?> koht)</option>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </select>
-            <label for="waiterId">Выберите официанта:</label>
+            <label for="waiterId">Vali teenindaja:</label>
             <select name="waiterId" id="waiterId">
                 <?php foreach ($xml->staff->employee as $employee): ?>
                     <?php if ($employee['role'] == 'waiter'): ?>
@@ -94,22 +94,22 @@ function loadMenu() {
                 <?php endforeach; ?>
             </select>
             <fieldset>
-                <legend>Выберите блюда:</legend>
+                <legend>Valige oma sööki:</legend>
                 <?php foreach ($xml->menu->dish as $dish): ?>
                     <div>
                         <input type="checkbox" name="dishes[]" id="dish_<?= $dish['id'] ?>" value="<?= $dish['id'] ?>">
                         <label for="dish_<?= $dish['id'] ?>"><?= $dish->name ?> (<?= $dish->price ?>€)</label>
 
-                        <label for="dish_<?= $dish['id'] ?>_qty">Количество:</label>
+                        <label for="dish_<?= $dish['id'] ?>_qty">Kogus:</label>
                         <input type="number" name="dish_qty[<?= $dish['id'] ?>]" id="dish_<?= $dish['id'] ?>_qty" value="1" min="1">
 
-                        <label for="dish_<?= $dish['id'] ?>_desc">Описание:</label>
+                        <label for="dish_<?= $dish['id'] ?>_desc">Kirjeldus:</label>
                         <input type="text" name="dish_desc[<?= $dish['id'] ?>]" id="dish_<?= $dish['id'] ?>_desc">
 
                     </div>
                 <?php endforeach; ?>
             </fieldset>
-            <input type="submit" value="Сделать заказ">
+            <input type="submit" value="Tellimuse esitamiseks">
         </form>
     </div>
     

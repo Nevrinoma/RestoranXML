@@ -5,7 +5,7 @@ session_start();
 <html lang="et">
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация и Регистрация</title>
+    <title>Autoriseerimine ja registreerimine</title>
     <link rel="stylesheet" href="../css/loginStyle.css">
     <script src="../js/confirmLogout.js"></script>
     <script src="../js/loginScript.js"></script>
@@ -46,32 +46,32 @@ session_start();
 <div class="container">
 
     <form id="loginForm" action="../php/validateLogin.php" method="post">
-        <input type="text" name="username" placeholder="Имя пользователя" required>
-        <input type="password" name="password" placeholder="Пароль" required>
-        <button type="submit">Войти</button>
-        <p class="switch">Вы здесь впервые? <span onclick="showRegister()">Зарегистрироваться</span></p>
-        <p class="switch">Добавить работника <span onclick="showEmployeeRegister()">Регистрация сотрудника</span></p>
+        <input type="text" name="username" placeholder="Kasutajanimi" required>
+        <input type="password" name="password" placeholder="Parool" required>
+        <button type="submit">Logi sisse</button>
+        <p class="switch">Kas te olete siin esimest korda? <span onclick="showRegister()">Registreeru</span></p>
+        <p class="switch">Töötaja lisamine <span onclick="showEmployeeRegister()">Töötajate registreerimine</span></p>
     </form>
 
 
     <form id="registerForm" action="../php/registerUser.php" method="post" style="display:none;">
-        <input type="text" name="Name" placeholder="Полное имя" required>
-        <input type="text" name="newUsername" placeholder="Новое имя пользователя" required>
-        <input type="password" name="newPassword" placeholder="Новый пароль" required>
+        <input type="text" name="Name" placeholder="Nimi ja Perekonnanimi" required>
+        <input type="text" name="newUsername" placeholder="Kasutajanimi" required>
+        <input type="password" name="newPassword" placeholder="Parool" required>
         <input type="hidden" name="role" value="client">
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Registreeru</button>
     </form>
 
 
     <form id="employeeRegisterForm" action="../php/registerUser.php" method="post" style="display:none;">
-        <input type="text" name="Name" placeholder="Полное имя" required>
-        <input type="text" name="newUsername" placeholder="Новое имя пользователя" required>
-        <input type="password" name="newPassword" placeholder="Новый пароль" required>
+        <input type="text" name="Name" placeholder="Nimi ja Perekonnanimi" required>
+        <input type="text" name="newUsername" placeholder="Kasutajanimi" required>
+        <input type="password" name="newPassword" placeholder="Parool" required>
         <select name="role">
-            <option value="waiter">Официант</option>
-            <option value="chef">Повар</option>
+            <option value="waiter">Teenindaja</option>
+            <option value="chef">Kokk</option>
         </select>
-        <button type="submit">Зарегистрировать сотрудника</button>
+        <button type="submit">Registreeru</button>
     </form>
 </div>
 
