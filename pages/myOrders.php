@@ -64,6 +64,45 @@ function displayOrders($restaurantXml, $usersXml, $status) {
     }
 }
 
+function displayOrdersWithDetails($restaurantXml, $usersXml, $status) {
+    foreach ($restaurantXml->orders->order as $order) {
+        if ($order->status == $status) {
+            $waiterId = (string)$order['waiterId'];
+            $waiterName = "";
+            foreach ($restaurantXml->staff->employee as $employee) {
+                if ($employee['id'] == $waiterId && $employee['role'] == 'waiter') {
+                    $waiterName = (string)$employee->name;
+                    break;
+                }
+            }
+            $userName = "";
+            foreach ($usersXml->user as $user) {
+                if ($user->name == $waiterName) {
+                    $userName = $waiterName;
+                    break;
+                }
+            }
+
+            echo "<div class='order'>";
+            echo "<h3>Заказ №" . $order['id'] . ", для " . getCustomerName($order['customerUserName'], $usersXml) . "</h3>";
+            echo "<p>Столик: " . $order['tableId'] . ", Официант: " . ($waiterName ? $waiterName : "Неизвестен") . "</p>";
+
+            echo "<h4>Блюда в заказе:</h4>";
+            $totalPrice = 0;
+            echo "<ul>";
+            foreach ($order->orderItems->item as $item) {
+                $dish = $restaurantXml->menu->xpath("//dish[@id='" . $item['dishId'] . "']")[0];
+                echo "<li>" . $dish->name . " x" . $item['quantity'] . " - " . $dish->price . "€ </li>";
+                $totalPrice += (float)$dish->price * (int)$item['quantity'];
+            }
+            echo "</ul>";
+            echo "<p>Общая стоимость: " . $totalPrice . "€</p>";
+
+            echo "</div>";
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -117,7 +156,7 @@ function displayOrders($restaurantXml, $usersXml, $status) {
 
 <div class="completed-orders">
     <h2>Предыдущие заказы</h2>
-    <?php displayOrders($restaurantXml, $usersXml, "served"); ?>
+    <?php displayOrdersWithDetails($restaurantXml, $usersXml, "served"); ?>
 </div>
 
 <footer>

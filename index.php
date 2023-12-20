@@ -1,6 +1,7 @@
 <?php
 session_start();
-$xml = simplexml_load_file("Data/Restaurant.xml");
+$xml = simplexml_load_file("Data/Restaurant.xml") or die("Error: Cannot load XML.");
+$usersXml = simplexml_load_file("Data/Users.xml") or die("Error: Cannot load XML.");
 
 $activeOrders = 0;
 $freeTables = 0;
@@ -18,6 +19,7 @@ foreach ($xml->tables->table as $table) {
 }
 
 $kitchenStatus = ($activeOrders > 5) ? 'Ei tööta' : 'Avatud';
+
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +91,80 @@ $kitchenStatus = ($activeOrders > 5) ? 'Ei tööta' : 'Avatud';
 <section id="notifications">
     <h2>Teated</h2>
     <div id="notificationArea">
+        <?php
+        if (empty($_SESSION['role'])) {
+            echo '<li><a href="pages/login.php">Logi Sisse</a></li>';
+        } elseif ($_SESSION['role'] == 'waiter') {
+            $readyOrders = [];
+            $waiterId = null;
+            foreach ($xml->staff->employee as $employee) {
+                if ($employee->name == $_SESSION['name'] && $employee['role'] == 'waiter') {
+                    $waiterId = (string)$employee['id'];
+                    break;
+                }
+            }
+        
+            if ($waiterId) {
+                foreach ($xml->orders->order as $order) {
+                    if ($order->status == "completed" && (string)$order['waiterId'] == $waiterId) {
+                        array_push($readyOrders, $order);
+                    }
+                }
+            }
+        
+            if (!empty($readyOrders)) {
+                echo "<h2>Valmis tellimused</h2>";
+                echo "<div id='notificationArea'>";
+                foreach ($readyOrders as $order) {
+                    echo "<div class='notification'>";
+                    echo "<p>Tellimus №" . $order['id'] . "</p>";
+                    echo "<p><a href='pages/orders.php'>Vaadake tellimust</a></p>";
+                    echo "</div>";
+                }
+                echo "</div>";
+            }
+        
+        
+        } elseif ($_SESSION['role'] == 'chef') {
+            $activeOrders = [];
+            foreach ($xml->orders->order as $order) {
+                if ($order->status == "active") {
+                    array_push($activeOrders, $order);
+                }
+            }
+        
+            if (!empty($activeOrders)) {
+                echo "<h2>Aktiivsed tellimused</h2>";
+                echo "<div id='notificationArea'>";
+                foreach ($activeOrders as $order) {
+                    echo "<div class='notification'>";
+                    echo "<p>Tellimus №" . $order['id'] . "</p>";
+                    echo "<p><a href='pages/orders.php'>Vaadake tellimust</a></p>";
+                    echo "</div>";
+                }
+                echo "</div>";
+            }
+        } elseif ($_SESSION['role'] == 'client') {
+            $clientOrders = [];
+            foreach ($xml->orders->order as $order) {
+                if ($order['customerUserName'] == $_SESSION['username'] && $order->status == "served") {
+                    array_push($clientOrders, $order);
+                }
+            }
+        
+            if (!empty($clientOrders)) {
+                echo "<h2>Teie arved</h2>";
+                echo "<div id='notificationArea'>";
+                foreach ($clientOrders as $order) {
+                    echo "<div class='notification'>";
+                    echo "<p>Tellimus №" . $order['id'] . "</p>";
+                    echo "<p><a href='pages/myOrders.php'>Vaadake arvet</a></p>";
+                    echo "</div>";
+                }
+                echo "</div>";
+            }
+        } 
+        ?>
     </div>
 </section>
 

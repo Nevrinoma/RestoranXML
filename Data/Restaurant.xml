@@ -78,7 +78,7 @@
                 <preference type="preference" dish="Red Wine" description="2 glasses"/>
                 <preference type="preference" dish="Chicken Alfredo Pasta" description="extra souce"/>
             </customerPreferences>
-            <status>active</status>
+            <status>completed</status>
         </order>
     <order id="5003" tableId="3" waiterId="e01" customerUserName="customer1"><orderItems><item dishId="101" quantity="25"/><item dishId="102" quantity="25"/><item dishId="103" quantity="25"/><item dishId="104" quantity="25"/><item dishId="105" quantity="25"/><item dishId="106" quantity="25"/><item dishId="107" quantity="25"/><item dishId="108" quantity="25"/><item dishId="109" quantity="25"/></orderItems><customerPreferences><preference type="preference" dish="Grilled Salmon" description="sugar"/><preference type="preference" dish="Caesar Salad" description=""/><preference type="preference" dish="Red Wine" description="grilled"/><preference type="preference" dish="Chicken Alfredo Pasta" description=""/><preference type="preference" dish="Bruschetta" description=""/><preference type="preference" dish="Cappuccino" description="no coffeine"/><preference type="preference" dish="Vegetarian Pizza" description=""/><preference type="preference" dish="Vesi" description="96%"/><preference type="preference" dish="Fish with Mushrooms" description=""/></customerPreferences><status>served</status></order></orders>
 </restaurant>
