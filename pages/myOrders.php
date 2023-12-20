@@ -28,6 +28,7 @@ function displayOrders($restaurantXml, $usersXml, $status) {
             $waiterId = (string)$order['waiterId'];
             $waiterName = "";
             
+
             foreach ($restaurantXml->staff->employee as $employee) {
                 if ($employee['id'] == $waiterId && $employee['role'] == 'waiter') {
                     $waiterName = (string)$employee->name;
@@ -63,19 +64,6 @@ function displayOrders($restaurantXml, $usersXml, $status) {
     }
 }
 
-function updateOrderStatus($restaurantXml, $orderId, $newStatus) {
-    foreach ($restaurantXml->orders->order as $order) {
-        if ($order['id'] == $orderId) {
-            $order->status = $newStatus;
-            break;
-        }
-    }
-    $restaurantXml->asXML("../Data/Restaurant.xml");
-}
-
-if (isset($_POST['update_status'])) {
-    updateOrderStatus($restaurantXml, $_POST['order_id'], $_POST['status']);
-}
 ?>
 
 <!DOCTYPE html>
@@ -123,35 +111,13 @@ if (isset($_POST['update_status'])) {
 </nav>
 </header>
 <div class="active-orders">
-    <h2>Активные заказы</h2>
+    <h2>Активный заказ</h2>
     <?php displayOrders($restaurantXml, $usersXml, "active"); ?>
 </div>
 
 <div class="completed-orders">
-    <h2>Готовые заказы</h2>
-    <?php displayOrders($restaurantXml, $usersXml,  "completed"); ?>
-</div>
-
-<div class="completed-orders">
-    <h2>Выполненные заказы</h2>
+    <h2>Предыдущие заказы</h2>
     <?php displayOrders($restaurantXml, $usersXml, "served"); ?>
-</div>
-
-<div class="add-dish-form">
-    <h2>Изменить статус заказа</h2>
-    <form method="post" action="">
-        <select name="order_id">
-            <?php foreach ($restaurantXml->orders->order as $order): ?>
-                <option value="<?= $order['id'] ?>">Заказ №<?= $order['id'] ?></option>
-            <?php endforeach; ?>
-        </select>
-        <select name="status">
-            <option value="active">Готовится</option>
-            <option value="completed">Готов</option>
-            <option value="served">Подан</option>
-        </select>
-        <input type="submit" name="update_status" value="Обновить статус">
-    </form>
 </div>
 
 <footer>
@@ -160,3 +126,6 @@ if (isset($_POST['update_status'])) {
 </footer>
 </body>
 </html>
+
+
+

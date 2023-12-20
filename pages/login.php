@@ -8,25 +8,40 @@ session_start();
     <title>Авторизация и Регистрация</title>
     <link rel="stylesheet" href="../css/loginStyle.css">
     <script src="../js/confirmLogout.js"></script>
+    <script src="../js/loginScript.js"></script>
 </head>
 <body>
 <header>
-    <nav>
-        <a href="../index.php"><img src="../Images/logo.png" alt="Logo"></a>
-        <ul>
-            <li><a href="menu.php">Menüü</a></li>
-            <li><a href="orders.php">Tellimused</a></li>
-            <li><a href="tables.php">Lauad</a></li>
-            <li><a href="staff.php">Personal</a></li>
-        </ul>
+<nav>
+    <a href="../index.php"><img src="../Images/logo.png" alt="Logo"></a>
+    <ul>
         <?php
-        if (isset($_SESSION["username"])) {
-            echo '<a href="javascript:confirmLogout();">Привет, ' . $_SESSION["username"] . '</a>';
-        } else {
-            echo '<a href="login.php">Logi sisse</a>';
+        if (empty($_SESSION['role'])) {
+            echo '<li><a href="login.php">Menu</a></li>';
+            echo '<li><a href="login.php">Tellimused</a></li>';
+            echo '<li><a href="login.php">Lauad</a></li>';
+            echo '<li><a href="login.php">Töötajad</a></li>';
+        } elseif ($_SESSION['role'] == 'client') {
+            echo '<li><a href="menuCustomer.php">Menu</a></li>';
+            echo '<li><a href="myOrders.php">Minu tellimus</a></li>';
+        } elseif ($_SESSION['role'] == 'waiter') {
+            echo '<li><a href="orders.php">Tellimused</a></li>';
+            echo '<li><a href="tables.php">Lauad</a></li>';
+        } elseif ($_SESSION['role'] == 'chef') {
+            echo '<li><a href="orders.php">Tellimused</a></li>';
+            echo '<li><a href="menu.php">Menu(Lisa uus)</a></li>';
+            echo '<li><a href="staff.php">Töötajad</a></li>';
         }
         ?>
-    </nav>
+    </ul>
+    <?php
+    if (isset($_SESSION["username"])) {
+        echo '<a href="javascript:confirmLogout(false);">Tere, ' . $_SESSION["name"] . '</a>';
+    } else {
+        echo '<a href="pages/login.php">Logi sisse või Registreeri</a>';
+    }
+    ?>
+</nav>
 </header>
 <div class="container">
 
@@ -60,7 +75,10 @@ session_start();
     </form>
 </div>
 
+<footer>
+    <p>© 2023 Taste of Pain. Kõik õigused kaitstud.</p>
+    <p>Kontakt: <a href="mailto:contact@yourrestaurant.com">giuliano.lember@tasteofpain.com</a></p>
+</footer>
 
-<script src="../js/loginScript.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
     color: #333;
-    background-color: #f0f0f0;
+    background-color:white;
     margin: 0;
     padding: 0;
 }
@@ -103,6 +103,7 @@ footer {
     width: 100%;
 }
 
+
 footer p {
     margin: 5px 0;
 }
@@ -137,6 +138,7 @@ footer a:hover {
 .add-dish-form {
     width: 30%;
     height: 30%;
+    margin: 1rem auto;
     background-color: white;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -146,12 +148,14 @@ footer a:hover {
 .add-dish-form form {
     display: flex;
     flex-direction: column;
+    justify-items: center;
+    
 }
 
 .add-dish-form input,
 .add-dish-form button {
-    margin: 10px 0;
     padding: 10px;
+    margin-right: 10px;
 }
 
 .add-dish-form button {
@@ -163,9 +167,9 @@ footer a:hover {
 
 
 select,input {
-    width: 100%;
     padding: 10px;
     margin: 10px 0;
+    margin-right: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: white;
@@ -298,10 +302,10 @@ select:disabled {
     margin-top: 10px;
 }
 
-.order-constructor select, .order-constructor input[type="text"], .order-constructor input[type="number"] {
-    width: calc(100% - 20px);
+.order-constructor select, .order-constructor input[type="text"], 
+.order-constructor input[type="number"] {
+    width: 20%;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
@@ -312,7 +316,7 @@ select:disabled {
 }
 
 .order-constructor input[type="number"] {
-    width: 50px; /* Уменьшите размер поля количества */
+    width: 50px; 
 }
 
 .order-constructor input[type="submit"] {
@@ -327,4 +331,73 @@ select:disabled {
 
 .order-constructor input[type="submit"]:hover {
     background-color: #5c6a4b;
+}
+
+.tables-container, .newTable-form {
+    flex: 1;
+    margin: 10px;
+}
+
+.newTable-form {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.newTable-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.newTable-form input, .newTable-form button {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.newTable-form button {
+    background-color: #4b583a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between; 
+}
+ .active-orders, .completed-orders{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font: 1em sans-serif;
+    
+}
+.table{
+    background-color: white;
+    width: 20%;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font: 1em sans-serif;
+    
+}
+
+.order{
+    background-color: rgba(0,0,0,0.05);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    font: 1em sans-serif;
 }

@@ -50,22 +50,6 @@ session_start();
             <?php loadMenu(); ?>
         </section>
     </div>
-
-    <div class="add-dish-form">
-        <h2>Lisa uus roog</h2>
-        <form action="../php/addDishScript.php" method="post">
-            <input type="text" name="name" placeholder="Roogi nimetus" required>
-            <input type="text" name="price" placeholder="Hind" required>
-            <select name="type">
-                <option value="main">Põhiroog</option>
-                <option value="appetizer">Eelroog</option>
-                <option value="drink">Jook</option>
-            </select>
-            <input type="text" name="allergens" placeholder="Allergeenid">
-            <button type="submit">Lisa</button>
-        </form>
-
-    </div>
 </main>
 
 

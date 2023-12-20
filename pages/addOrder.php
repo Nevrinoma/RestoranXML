@@ -1,6 +1,29 @@
 <?php
 session_start();
 $xml = simplexml_load_file("../Data/Restaurant.xml") or die("Error: Cannot create object");
+
+function loadMenu() {
+    $xml = simplexml_load_file("../Data/Restaurant.xml") or die("Error: Cannot create object");
+    $types = ['main' => 'Pearoad', 'appetizer' => 'Suupisted', 'drink' => 'Joogid'];
+
+    foreach ($types as $type => $typeName) {
+        echo "<h2>" . $typeName . "</h2>";
+        echo "<div class='menu-type'>";
+        foreach ($xml->menu->dish as $dish) {
+            if ($dish['type'] == $type) {
+                echo "<div class='menu-item'>";
+                echo "<h3>" . $dish->name . "</h3>";
+                echo "<p>Hind: " . $dish->price . "€</p>";
+                echo "<p>Allergeenid: " . $dish->allergyTags . "</p>";
+                echo "</div>";
+            }
+        }
+        echo "</div>";
+    }
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="et">
@@ -13,22 +36,36 @@ $xml = simplexml_load_file("../Data/Restaurant.xml") or die("Error: Cannot creat
 </head>
 <body>
 <header>
-    <nav>
-        <a href="../index.php"><img src="../Images/logo.png" alt="Logo"></a>
-        <ul>
-            <li><a href="menu.php">Menüü</a></li>
-            <li><a href="orders.php">Tellimused</a></li>
-            <li><a href="tables.php">Lauad</a></li>
-            <li><a href="staff.php">Personal</a></li>
-        </ul>
+<nav>
+    <a href="../index.php"><img src="../Images/logo.png" alt="Logo"></a>
+    <ul>
         <?php
-        if (isset($_SESSION["username"])) {
-            echo '<a href="javascript:confirmLogout();">Привет, ' . $_SESSION["username"] . '</a>';
-        } else {
-            echo '<a href="login.php">Logi sisse</a>';
+        if (empty($_SESSION['role'])) {
+            echo '<li><a href="login.php">Menu</a></li>';
+            echo '<li><a href="login.php">Tellimused</a></li>';
+            echo '<li><a href="login.php">Lauad</a></li>';
+            echo '<li><a href="login.php">Töötajad</a></li>';
+        } elseif ($_SESSION['role'] == 'client') {
+            echo '<li><a href="menuCustomer.php">Menu</a></li>';
+            echo '<li><a href="myOrders.php">Minu tellimus</a></li>';
+        } elseif ($_SESSION['role'] == 'waiter') {
+            echo '<li><a href="orders.php">Tellimused</a></li>';
+            echo '<li><a href="tables.php">Lauad</a></li>';
+        } elseif ($_SESSION['role'] == 'chef') {
+            echo '<li><a href="orders.php">Tellimused</a></li>';
+            echo '<li><a href="menu.php">Menu(Lisa uus)</a></li>';
+            echo '<li><a href="staff.php">Töötajad</a></li>';
         }
         ?>
-    </nav>
+    </ul>
+    <?php
+    if (isset($_SESSION["username"])) {
+        echo '<a href="javascript:confirmLogout(false);">Tere, ' . $_SESSION["name"] . '</a>';
+    } else {
+        echo '<a href="pages/login.php">Logi sisse või Registreeri</a>';
+    }
+    ?>
+</nav>
 </header>
 
 <main class="main">
@@ -39,17 +76,21 @@ $xml = simplexml_load_file("../Data/Restaurant.xml") or die("Error: Cannot creat
     </div>
 
     <div class="order-constructor">
-        <form action="submitOrder.php" method="post">
+        <form action="../php/addOrderScript.php" method="post">
             <label for="tableId">Выберите столик:</label>
             <select name="tableId" id="tableId">
                 <?php foreach ($xml->tables->table as $table): ?>
-                    <option value="<?= $table['id'] ?>">Столик <?= $table['id'] ?> (<?= $table['seats'] ?> мест)</option>
+                    <?php if ($table['occupied'] == "false"): ?>
+                        <option value="<?= $table['id'] ?>">Столик <?= $table['id'] ?> (<?= $table['seats'] ?> мест)</option>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </select>
             <label for="waiterId">Выберите официанта:</label>
             <select name="waiterId" id="waiterId">
                 <?php foreach ($xml->staff->employee as $employee): ?>
-                    <option value="<?= $employee['id'] ?>"><?= $employee->name ?></option>
+                    <?php if ($employee['role'] == 'waiter'): ?>
+                        <option value="<?= $employee['id'] ?>"><?= $employee->name ?></option>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </select>
             <fieldset>
@@ -83,25 +124,3 @@ $xml = simplexml_load_file("../Data/Restaurant.xml") or die("Error: Cannot creat
 </html>
 
 
-<?php
-function loadMenu() {
-    $xml = simplexml_load_file("../Data/Restaurant.xml") or die("Error: Cannot create object");
-    $types = ['main' => 'Pearoad', 'appetizer' => 'Suupisted', 'drink' => 'Joogid'];
-
-    foreach ($types as $type => $typeName) {
-        echo "<h2>" . $typeName . "</h2>";
-        echo "<div class='menu-type'>";
-        foreach ($xml->menu->dish as $dish) {
-            if ($dish['type'] == $type) {
-                echo "<div class='menu-item'>";
-                echo "<h3>" . $dish->name . "</h3>";
-                echo "<p>Hind: " . $dish->price . "€</p>";
-                echo "<p>Allergeenid: " . $dish->allergyTags . "</p>";
-                echo "</div>";
-            }
-        }
-        echo "</div>";
-    }
-}
-
-?>

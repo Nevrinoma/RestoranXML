@@ -8,7 +8,7 @@ if (isset($_SESSION["username"])) {
     header("Location: ../index.php");
     exit;
 } else {
-    header("Location: login.php");
+    header("Location: ../pages/login.php");
     exit;
 }
 ?>

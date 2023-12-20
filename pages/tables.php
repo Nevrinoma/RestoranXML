@@ -5,14 +5,12 @@ session_start();
 <html lang="et">
 <head>
     <meta charset="UTF-8">
-    <title>Töötajate Haldamine</title> 
+    <title>Столы Ресторана</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/staffScript.js" defer></script>
-    <script src="../js/confirmLogout.js"></script>
 </head>
 <body>
-    <header>
-    <nav>
+<header>
+<nav>
     <a href="../index.php"><img src="../Images/logo.png" alt="Logo"></a>
     <ul>
         <?php
@@ -42,41 +40,30 @@ session_start();
     }
     ?>
 </nav>
-    </header>
-
+</header>
     <main>
-        <h1>Töötajate Haldamine</h1> 
-        <table id="staffTable">
-            <thead>
-                <tr>
-                    <th>Nimi</th> 
-                    <th>Kasutajanimi</th> 
-                    <th>Parool</th> 
-                    <th>Roll</th> 
-                    <th>Tegevused</th> 
-                </tr>
-            </thead>
-            <tbody>
-                <?php include '../php/loadStuff.php'; ?>
-            </tbody>
-        </table>
+        <h1>Столы Ресторана</h1>
+        <div class="tables-container">
+            <?php
+                $xml = simplexml_load_file("../Data/Restaurant.xml");
+                foreach ($xml->tables->table as $table) {
+                    echo "<div class='table'>";
+                    echo "<h2>Стол №" . $table['id'] . "</h2>";
+                    echo "<p>Мест: " . $table['seats'] . "</p>";
+                    echo "<p>Занят: " . ($table['occupied'] == 'true' ? 'Да' : 'Нет') . "</p>";
+                    
+                    echo "</div>";
+                }
+            ?>
+        </div>
+        <div class="add-dish-form">
+        <form action="../php/addTable.php" method="post">
+            <h1>Lisa uus: </h1>
+            <label for="seats">Количество мест:</label>
+            <input type="number" name="seats" id="seats" required>
 
-        
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <form id="editForm">
-                    <label for="editUsername">Kasutajanimi:</label> 
-                    <input type="text" id="editUsername" name="username"><br><br>
-                    <label for="editName">Nimi:</label> 
-                    <input type="text" id="editName" name="name"><br><br>
-                    <label for="editPassword">Parool:</label> 
-                    <input type="password" id="editPassword" name="password"><br><br>
-                    <label for="editRole">Roll:</label> 
-                    <input type="text" id="editRole" name="role"><br><br>
-                    <input type="submit" value="Salvesta muudatused"> 
-                </form>
-            </div>
+            <input type="submit" value="Добавить стол">
+        </form>
         </div>
     </main>
     <footer>

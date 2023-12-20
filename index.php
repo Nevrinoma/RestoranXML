@@ -1,6 +1,25 @@
 <?php
 session_start();
+$xml = simplexml_load_file("Data/Restaurant.xml");
+
+$activeOrders = 0;
+$freeTables = 0;
+
+foreach ($xml->orders->order as $order) {
+    if ($order->status == 'active') {
+        $activeOrders++;
+    }
+}
+
+foreach ($xml->tables->table as $table) {
+    if ($table['occupied'] == 'false') {
+        $freeTables++;
+    }
+}
+
+$kitchenStatus = ($activeOrders > 5) ? 'Ei tööta' : 'Avatud';
 ?>
+
 <!DOCTYPE html>
 <html lang="et">
 <head>
@@ -12,22 +31,38 @@ session_start();
 </head>
 <body>
 <header>
-    <nav>
-        <a href="index.php"><img src="Images/logo.png" alt="Logo"></a>
-        <ul>
-            <li><a href="pages/menu.php">Menüü</a></li>
-            <li><a href="pages/orders.php">Tellimused</a></li>
-            <li><a href="pages/tables.php">Lauad</a></li>
-            <li><a href="pages/staff.php">Personal</a></li>
-        </ul>
+<nav>
+    <a href="index.php"><img src="Images/logo.png" alt="Logo"></a>
+    <ul>
         <?php
-        if (isset($_SESSION["username"])) {
-            echo '<a href="javascript:confirmLogout();">Привет, ' . $_SESSION["username"] . '</a>';
-        } else {
-            echo '<a href="pages/login.php">Logi sisse</a>';
+        if (empty($_SESSION['role'])) {
+            echo '<li><a href="pages/login.php">Menu</a></li>';
+            echo '<li><a href="pages/login.php">Tellimused</a></li>';
+            echo '<li><a href="pages/login.php">Lauad</a></li>';
+            echo '<li><a href="pages/login.php">Töötajad</a></li>';
+        } elseif ($_SESSION['role'] == 'client') {
+            echo '<li><a href="pages/menuCustomer.php">Menu</a></li>';
+            echo '<li><a href="pages/myOrders.php">Minu tellimus</a></li>';
+        } elseif ($_SESSION['role'] == 'waiter') {
+            echo '<li><a href="pages/orders.php">Tellimused</a></li>';
+            echo '<li><a href="pages/tables.php">Lauad</a></li>';
+        } elseif ($_SESSION['role'] == 'chef') {
+            echo '<li><a href="pages/orders.php">Tellimused</a></li>';
+            echo '<li><a href="pages/menu.php">Menu(Lisa uus)</a></li>';
+            echo '<li><a href="pages/staff.php">Töötajad</a></li>';
         }
         ?>
-    </nav>
+    </ul>
+    <?php
+    if (isset($_SESSION["username"])) {
+        echo '<a href="javascript:confirmLogout(true);">Tere, ' . $_SESSION["name"] . '</a>';
+    } else {
+        echo '<a href="pages/login.php">Logi sisse või Registreeri</a>';
+    }
+    ?>
+</nav>
+
+
 </header>
 <img src="Images/restWidePict.jpg" alt="Фото ресторана" id="restaurant-photo">
 
@@ -35,26 +70,25 @@ session_start();
 <section id="dashboard">
     <h2>Juhtpaneel</h2>
     <div class="dashboard-item">
-        <p>Aktiivseid tellimusi: <span id="activeOrders">0</span></p>
+        <p>Aktiivseid tellimusi: <span id="activeOrders"><?= $activeOrders ?></span></p>
     </div>
     <div class="dashboard-item">
-        <p>Vabu laudu: <span id="freeTables">0</span></p>
+        <p>Vabu laudu: <span id="freeTables"><?= $freeTables ?></span></p>
     </div>
     <div class="dashboard-item">
-        <p>Köögi staatus: <span id="kitchenStatus">Avatud</span></p>
+        <p>Köögi staatus: <span id="kitchenStatus"><?= $kitchenStatus ?></span></p>
     </div>
 </section>
 
 <section id="quickAccess">
     <h2>Kiirjuurdepääs</h2>
     <button onclick="location.href='pages/addOrder.php'">Lisa tellimus</button>
-    <button onclick="location.href='pages/menu.php'">Vaata menüüd</button>
+    <button onclick="location.href='pages/menuCustomer.php'">Vaata menüüd</button>
 </section>
 
 <section id="notifications">
     <h2>Teated</h2>
     <div id="notificationArea">
-
     </div>
 </section>
 

@@ -1,5 +1,6 @@
-function confirmLogout() {
+function confirmLogout(isIndex) {
     if (confirm('Вы точно хотите выйти?')) {
-        window.location.href = '../pages/unLogin.php'; 
+       if (isIndex) window.location.href = './php/unLogin.php';
+       else window.location.href = './../php/unLogin.php';
     }
 }

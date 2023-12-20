@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <restaurant name="Taste of Pain" address="Vanalinna 1">
     <tables>
-        <table id="1" seats="4"/>
-        <table id="2" seats="2"/>
-        <table id="3" seats="6"/>
+        <table id="1" seats="4" occupied="false"/>
+        <table id="2" seats="2" occupied="true"/>
+        <table id="3" seats="6" occupied="false"/>
+        <table id="4" seats="3" occupied="true"/>
+        <table id="5" seats="4" occupied="false"/>
     </tables>
     <menu>
         <dish id="101" type="main">
@@ -46,7 +48,7 @@
             <price>1.5</price>
             <allergyTags>none</allergyTags>
         </dish>
-    <dish id="109" type="main"><name>Fish with Mushrooms</name><price>19.99</price><allergyTags>fish,mushrooms,egg,cianid</allergyTags></dish></menu>
+    <dish id="109" type="main"><name>Fish with Mushrooms</name><price>19.99</price><allergyTags>fish,mushrooms,egg,cianid</allergyTags></dish><dish id="110" type="main"><name>Pizza Peperoni</name><price>11.99</price><allergyTags>casein, gluten</allergyTags></dish></menu>
     <staff>
         <employee id="e01" role="waiter">
             <name>John Smith</name>
@@ -56,27 +58,27 @@
         </employee>
     </staff>
     <orders>
-        <order id="5001" tableId="1" waiterId="e01">
+        <order id="5001" tableId="1" waiterId="e01" customerUserName="customer1">
             <orderItems>
-                <item dishId="101" quantity="2"/>
                 <item dishId="103" quantity="2"/>
+                <item dishId="104" quantity="3"/>
             </orderItems>
             <customerPreferences>
-                <preference type="allergy" description="&#x431;&#x435;&#x437; &#x433;&#x43B;&#x44E;&#x442;&#x435;&#x43D;&#x430;"/>
-                <preference type="preference" description="&#x434;&#x43E;&#x43F;&#x43E;&#x43B;&#x43D;&#x438;&#x442;&#x435;&#x43B;&#x44C;&#x43D;&#x44B;&#x439; &#x43B;&#x438;&#x43C;&#x43E;&#x43D;"/>
+                <preference type="preference" dish="Red Wine" description="2 glasses"/>
+                <preference type="preference" dish="Chicken Alfredo Pasta" description="extra souce"/>
             </customerPreferences>
             <status>active</status>
         </order>
-        <order id="5002" tableId="2" waiterId="e01">
+        <order id="5002" tableId="1" waiterId="e01" customerUserName="customer1">
             <orderItems>
-                <item dishId="102" quantity="1"/>
-                <item dishId="103" quantity="1"/>
+                <item dishId="103" quantity="2"/>
+                <item dishId="104" quantity="3"/>
             </orderItems>
             <customerPreferences>
-                <preference type="allergy" description="&#x431;&#x435;&#x437; &#x43B;&#x430;&#x43A;&#x442;&#x43E;&#x437;&#x44B;"/>
-                <preference type="preference" description="&#x43C;&#x435;&#x43D;&#x44C;&#x448;&#x435; &#x441;&#x43E;&#x43B;&#x438;"/>
+                <preference type="preference" dish="Red Wine" description="2 glasses"/>
+                <preference type="preference" dish="Chicken Alfredo Pasta" description="extra souce"/>
             </customerPreferences>
-            <status>completed</status>
+            <status>active</status>
         </order>
-    </orders>
+    <order id="5003" tableId="3" waiterId="e01" customerUserName="customer1"><orderItems><item dishId="101" quantity="25"/><item dishId="102" quantity="25"/><item dishId="103" quantity="25"/><item dishId="104" quantity="25"/><item dishId="105" quantity="25"/><item dishId="106" quantity="25"/><item dishId="107" quantity="25"/><item dishId="108" quantity="25"/><item dishId="109" quantity="25"/></orderItems><customerPreferences><preference type="preference" dish="Grilled Salmon" description="sugar"/><preference type="preference" dish="Caesar Salad" description=""/><preference type="preference" dish="Red Wine" description="grilled"/><preference type="preference" dish="Chicken Alfredo Pasta" description=""/><preference type="preference" dish="Bruschetta" description=""/><preference type="preference" dish="Cappuccino" description="no coffeine"/><preference type="preference" dish="Vegetarian Pizza" description=""/><preference type="preference" dish="Vesi" description="96%"/><preference type="preference" dish="Fish with Mushrooms" description=""/></customerPreferences><status>served</status></order></orders>
 </restaurant>

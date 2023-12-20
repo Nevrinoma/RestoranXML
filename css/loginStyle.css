@@ -53,6 +53,14 @@ nav ul li a:hover {
 nav a img {
     height: 70px;
 }
+footer {
+    background-color: #4b583a;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+}
 
 .container {
     background-color: white;
